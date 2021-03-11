@@ -8,7 +8,7 @@ on:
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GKE_CLUSTER: mtk-002-gke
-  GKE_ZONE: europe-west2-a
+  GKE_ZONE: europe-west2
   DEPLOYMENT_NAME: frontend2
   IMAGE: frontend2
 
