@@ -17,10 +17,4 @@ RUN mkdir -p /opt/cprof && \
 RUN mvn clean package
  
 # set the startup command to execute the jar
-RUN java \
-    -agentpath:/opt/cdbg/cdbg_java_agent.so \
-    -Dcom.google.cdbg.module=frontend2 \
-    -Dcom.google.cdbg.version=0.0.1 \
-    -Dcom.google.cdbg.breakpoints.enable_canary=false \
-    -jar target/frontend2-0.0.1-SNAPSHOT.jar \
-    -agentpath:/opt/cprof/profiler_java_agent.so=-cprof_service=frontend2,-logtostderr,-minloglevel=2
+CMD ["java", "-agentpath:/opt/cdbg/cdbg_java_agent.so", "-Dcom.google.cdbg.module=frontend2", "-Dcom.google.cdbg.version=0.0.1", "-Dcom.google.cdbg.breakpoints.enable_canary=false", "-jar", "target/frontend2-0.0.1-SNAPSHOT.jar", "-agentpath:/opt/cprof/profiler_java_agent.so=-cprof_service=frontend2,-logtostderr,-minloglevel=2"]
