@@ -1,4 +1,4 @@
-name: Build and Deploy to GKE 2
+name: Build and Deploy to GKE 3
 
 on:
   push:
