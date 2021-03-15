@@ -3,6 +3,9 @@ package com.github.ketangmistry.frontend2.controller;
 import com.github.ketangmistry.frontend2.service.IMineralService;
 import com.github.ketangmistry.frontend2.service.ApiService;
 import com.github.ketangmistry.frontend2.model.Mineral;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +16,7 @@ import java.util.List;
 
 @RestController
 class Controller {
+    private Logger logger = LoggerFactory.getLogger(Controller.class);
 
     @Autowired
     private IMineralService mineralService;
@@ -32,7 +36,7 @@ class Controller {
 
         HashMap<String, Object> params = new HashMap<String, Object>();
         params.put("minerals", minerals);
-        System.out.println("Mineral Amount from API:" + apiService.getMineralAmount());
+        logger.info("Mineral amount from API: {}", apiService.getMineralAmount());
         
         return new ModelAndView("showMinerals", params);
     }

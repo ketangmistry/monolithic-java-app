@@ -2,6 +2,9 @@ package com.github.ketangmistry.frontend2.service;
 
 import com.github.ketangmistry.frontend2.model.Mineral;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,6 +14,7 @@ import java.util.Date;
 
 @Service
 public class MineralService implements IMineralService {
+    private Logger logger = LoggerFactory.getLogger(MineralService.class);
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -31,9 +35,9 @@ public class MineralService implements IMineralService {
 
         List<Mineral> minerals = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Mineral.class));
 
+        StackTraceElement[] stackTraceElements;
         if(minerals.size() > 0) {
             int newAmount = ammount + minerals.get(0).getPurchases();
-
 
             try {
                 Date now = new Date();
@@ -47,6 +51,9 @@ public class MineralService implements IMineralService {
 
                     jdbcTemplate.update(sql, newAmount, name);
 
+                    stackTraceElements = Thread.currentThread().getStackTrace();
+                    this.printStackTrace(stackTraceElements);
+
                 }
                 else {
                     updated= false;
@@ -54,14 +61,23 @@ public class MineralService implements IMineralService {
                 }
             }
             catch(Exception exception) {
-                    System.out.println("Exception is " + exception);
+                exception.printStackTrace();
+                logger.error(exception.getMessage());
+
             }
 
         }
 
-        System.out.println("Update is " + updated);
+        logger.info("Mineral updated is " + updated);
 
         return updated;
 
     }
+
+    void printStackTrace(StackTraceElement[] stackTraceElements) {
+        for (StackTraceElement element : stackTraceElements) {
+            logger.info("{}:{}:{}", element.getClassName(), element.getMethodName(), element.getLineNumber());
+        }
+    }
+
 }
