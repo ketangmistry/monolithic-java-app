@@ -1,4 +1,4 @@
-name: Build and Deploy to GKE 3
+name: Build and Deploy to GKE 4
 
 runs-on: self-hosted
 
