@@ -62,7 +62,7 @@ public class MineralService implements IMineralService {
             }
             catch(Exception exception) {
                 exception.printStackTrace();
-                logger.error(exception.getMessage());
+                logger.error(exception.getMessage()); 
 
             }
 
