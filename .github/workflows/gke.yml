@@ -1,5 +1,7 @@
 name: Build and Deploy to GKE 3
 
+runs-on: self-hosted
+
 on:
   push:
     branches:
