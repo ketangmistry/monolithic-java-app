@@ -1,7 +1,5 @@
 name: Build and Deploy to GKE 4
 
-runs-on: self-hosted
-
 on:
   push:
     branches:
@@ -17,7 +15,7 @@ env:
 jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     environment: production
 
     steps:
