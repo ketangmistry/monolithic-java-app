@@ -58,6 +58,7 @@ public class MineralService implements IMineralService {
                 else {
                     updated= false;
                     int i = 1 /0;
+                    logger.info("i is {}", i);
                 }
             }
             catch(Exception exception) {
