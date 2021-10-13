@@ -1,4 +1,4 @@
 # Frontend 2 App
-Simple Java App called Frontend 2. To be deployed on my own GCP project.
+Simple Java App called Frontend 2. To be tested using Jenkins.
 -
-2021-10-07_19:49
+
