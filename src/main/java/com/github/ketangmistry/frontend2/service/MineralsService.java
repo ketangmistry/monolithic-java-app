@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
-public class MineralService implements IMineralService {
-    private Logger logger = LoggerFactory.getLogger(MineralService.class);
+public class MineralsService implements RawObjects {
+    private Logger logger = LoggerFactory.getLogger(MineralsService.class);
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -28,7 +28,7 @@ public class MineralService implements IMineralService {
     }
 
     @Override
-    public boolean updateMineral(String name, int ammount) {
+    public boolean update(String name, int ammount) {
         boolean updated = false;
 
         String sql = "SELECT * FROM minerals WHERE name = '" + name + "'";

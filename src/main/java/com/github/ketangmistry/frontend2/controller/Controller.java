@@ -1,7 +1,7 @@
 package com.github.ketangmistry.frontend2.controller;
 
-import com.github.ketangmistry.frontend2.service.IMineralService;
-import com.github.ketangmistry.frontend2.service.ApiService;
+import com.github.ketangmistry.frontend2.service.ExternalMineralsFeed;
+import com.github.ketangmistry.frontend2.service.MineralsService;
 import com.github.ketangmistry.frontend2.model.Mineral;
 
 import org.slf4j.Logger;
@@ -16,27 +16,22 @@ import java.util.List;
 
 @RestController
 class Controller {
+    private static final String API_URI = System.getenv("API3_URI") != null ? System.getenv("API3_URI") : "http://1.2.3.4:8080";
+
     private Logger logger = LoggerFactory.getLogger(Controller.class);
 
     @Autowired
-    private IMineralService mineralService;
+    private MineralsService mineralService;
 
     @Autowired
-    private ApiService apiService;
+    private ExternalMineralsFeed apiService;
 
-    @GetMapping(value = "/")
-    public String index(Model model) {
-
-        return "index";
-    }
-
-    @GetMapping(value="/minerals")
+    @GetMapping(value="/")
     public ModelAndView showMinerals() {
         List<Mineral> minerals = mineralService.findAll();
 
         HashMap<String, Object> params = new HashMap<String, Object>();
         params.put("minerals", minerals);
-        logger.info("Mineral amount from API: {}", apiService.getMineralAmount());
         
         return new ModelAndView("showMinerals", params);
     }
@@ -45,7 +40,7 @@ class Controller {
     public String showMinerals(@PathVariable(value = "name") String name,
                                     @PathVariable(value = "amount") int amount) {
 
-        boolean update = mineralService.updateMineral(name, amount);  
+        boolean update = mineralService.update(name, amount);  
 
         return amount + " of " + name + " purchased (" + update + ")";                          
 

@@ -9,15 +9,12 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 
 
 @Service
-public class ApiService {
-    private Logger logger = LoggerFactory.getLogger(ApiService.class);
-    
-    public String getMineralAmount()
-    {
-        // Hard coded
-        // Again
-        final String uri = "http://35.190.195.220";
-    
+public class ExternalMineralsFeed implements Api{
+
+    private Logger logger = LoggerFactory.getLogger(ExternalMineralsFeed.class);
+
+    @Override
+    public String get(String uri) {
         RestTemplate restTemplate = new RestTemplate();
         ((SimpleClientHttpRequestFactory)restTemplate.getRequestFactory()).setConnectTimeout(2000);
 
