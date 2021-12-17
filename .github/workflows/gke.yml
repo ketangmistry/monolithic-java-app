@@ -30,7 +30,7 @@ jobs:
         HELM_CLIENT_VERSION=3.7.2
         curl https://get.helm.sh/helm-v${HELM_CLIENT_VERSION}-linux-amd64.tar.gz -O
         mkdir /tmp/helm3
-        tar -xvf helm-${HELM_CLIENT_VERSION}-linux-amd64.tar.gz -C /tmp/helm3
+        tar -xvf helm-v${HELM_CLIENT_VERSION}-linux-amd64.tar.gz -C /tmp/helm3
         PATH=${PATH}:/tmp/helm3/linux-amd64
         HELM_HOME=/home/${USERNAME}/.helm
 
