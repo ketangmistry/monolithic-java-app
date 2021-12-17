@@ -37,7 +37,7 @@ jobs:
         helm repo add newrelic https://helm-charts.newrelic.com
         helm search repo newrelic/
 
-        cat ${GITHUB_WORKSPACE}/override-values.yaml
+        cat ${GITHUB_WORKSPACE}/newrelic/nri-bundle/override-values.yaml
 
         helm upgrade --reuse-values -f ${GITHUB_WORKSPACE}/override-values.yaml \
           newrelic-bundle newrelic/nri-bundle \
