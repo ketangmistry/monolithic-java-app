@@ -1,3 +1,4 @@
 newrelic-infrastructure:
   image:
     repository: test
+    tag: "1.1.1"
