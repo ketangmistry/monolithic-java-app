@@ -57,8 +57,8 @@ jobs:
 
         cat ${GITHUB_WORKSPACE}/newrelic/nri-bundle/override-values.yaml
 
-        helm upgrade --reuse-values -f ${GITHUB_WORKSPACE}/newrelic/nri-bundle/override-values.yaml \
-          newrelic-bundle newrelic/nri-bundle/ \
+        helm upgrade newrelic-bundle newrelic/nri-bundle/ \
+          --reuse-values -f ${GITHUB_WORKSPACE}/helm/newrelic/values.yaml \
           --install \
           --set global.licenseKey=123 \
           --set global.cluster=456 \
