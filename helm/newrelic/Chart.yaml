@@ -26,4 +26,4 @@ appVersion: "1.16.0"
 dependencies:
 - name: nri-bundle
   version: "3.2.11"
-  repository: "newrelic/nri-bundle"
+  repository: "https://helm-charts.newrelic.com/newrelic/nri-bundle"
